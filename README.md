@@ -22,6 +22,8 @@ Screenshots show the current development build and may include features newer th
 
 Keep capability and release claims aligned with the application. The current product is an early preview for trusted local development. Installer binaries, checksums and installation guides are distributed through [SparkStudioX/releases](https://github.com/SparkStudioX/releases/releases), separately from this website repository.
 
-The header and hero Download buttons jump to the bottom download section. Its Windows link opens the GitHub releases list so prereleases are included (GitHub’s `/releases/latest` excludes them); Docker is marked coming soon. The gallery covers the Designer, reusable operator forms, process graphics, work orders and scripting.
+The header and hero Download buttons jump to the bottom download section. **Download for Windows** points directly to the unsigned x64 installer for `v0.2.0-preview.1`. The card also links to that same release's notes, installation guide, workshop ZIP and installer SHA-256 checksum. Links are pinned to an explicit prerelease because GitHub’s `/releases/latest` excludes prereleases. Docker remains marked coming soon. The gallery covers the Designer, reusable operator forms, process graphics, work orders and scripting.
+
+When updating the download card, publish and verify every linked asset in `SparkStudioX/releases` before deploying this website. Keep the visible version, release tag, installer filename and workshop filename synchronized; do not point visitors to draft or missing assets. The release repository carries assets and documentation, not application source.
 
 Operator gallery images (02–04) are captured in Application only presentation, with the runtime header, navigation and footer hidden. The bottom download section is the single place describing Windows and Docker availability.
