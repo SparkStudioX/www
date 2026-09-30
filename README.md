@@ -24,7 +24,7 @@ The build uses markdown-it with raw HTML disabled and local highlight.js. It rew
 
 The reader includes full-text search over all guides, active-page navigation, heading permalinks, highlighted/copyable code, scrolling tables, adjacent-page links, source provenance, light/dark/system appearance and a keyboard-accessible mobile drawer. Search runs in the visitor's browser. Desktop content is usable without JavaScript; mobile topic navigation requires JavaScript. There are no external fonts, analytics, tracking or gateway connections.
 
-The collection is **Development docs**, which can describe work newer than the installer and ongoing application changes. Three linked development workshop sources are not committed at the current pin. Their exact paths are listed in `unpublishedSources`; the renderer displays their labels as text with “source pending publication,” never broken GitHub links. Unexpected missing sources fail the build. When those sources are published, update the pin and remove the obsolete exceptions; the build enforces this cleanup.
+The collection is **Development docs**, pinned to the reviewed preview.9 documentation and verification commit. All linked workshop sources are published at this pin; no unpublished-source exceptions are needed. Unexpected missing sources fail the build. Keep the pin and compatibility guidance deliberate when newer development work is published.
 
 To publish a documentation update:
 
@@ -38,7 +38,7 @@ To publish a documentation update:
 
 The [standard preview release cycle](https://sparkstudiox.com/docs/release-process/) joins installer building and verification, GitHub prerelease publication, download updates and hosted docs into one release checklist. Its source is maintained in `SparkStudioX/src` at `docs/architecture/RELEASE_PROCESS.md`. A release is not complete until its installer/assets and the live website/docs are verified.
 
-The homepage links **v0.2.0-preview.8**, including its installer, installation guide, workshop ZIP and installer checksum. Docker is coming soon. GitHub's `/releases/latest` excludes prereleases, so downloads use verified explicit tags.
+The homepage links **v0.2.0-preview.9**, including its installer, installation guide, workshop ZIP and installer checksum. Docker is coming soon. GitHub's `/releases/latest` excludes prereleases, so downloads use verified explicit tags.
 
 After publishing the next complete preview, run `npm run release:update`, review `release.json` and `index.html`, then commit. `npm run release:check` queries GitHub, excludes drafts, selects the most recently published preview, verifies all four uploaded assets, and rejects stale or mismatched homepage links. Set `GITHUB_TOKEN` if needed for API limits; never write it to the repository. CI checks releases before deployment but does not rewrite or commit files automatically.
 

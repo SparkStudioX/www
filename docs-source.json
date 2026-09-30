@@ -1,9 +1,4 @@
 {
   "repository": "SparkStudioX/src",
-  "ref": "5b79d67bc2696d813d82527f075f0ccafc067fce",
-  "unpublishedSources": [
-    "examples/python-component-events.json",
-    "examples/component-messaging.json",
-    "examples/python-ui.json"
-  ]
+  "ref": "603a14aa1826ad50740effe02d19dd7f7b310997"
 }
