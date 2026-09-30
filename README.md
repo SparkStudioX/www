@@ -36,12 +36,14 @@ To publish a documentation update:
 
 ## Downloads
 
+The [standard preview release cycle](https://sparkstudiox.com/docs/release-process/) joins installer building and verification, GitHub prerelease publication, download updates and hosted docs into one release checklist. Its source is maintained in `SparkStudioX/src` at `docs/architecture/RELEASE_PROCESS.md`. A release is not complete until its installer/assets and the live website/docs are verified.
+
 The homepage links **v0.2.0-preview.8**, including its installer, installation guide, workshop ZIP and installer checksum. Docker is coming soon. GitHub's `/releases/latest` excludes prereleases, so downloads use verified explicit tags.
 
 After publishing the next complete preview, run `npm run release:update`, review `release.json` and `index.html`, then commit. `npm run release:check` queries GitHub, excludes drafts, selects the most recently published preview, verifies all four uploaded assets, and rejects stale or mismatched homepage links. Set `GITHUB_TOKEN` if needed for API limits; never write it to the repository. CI checks releases before deployment but does not rewrite or commit files automatically.
 
 ## Publish
 
-The `Publish website and docs` GitHub Actions workflow builds and validates on pull requests and pushes. Only `main` deploys through GitHub Pages. Configure Pages to use **GitHub Actions**, with the existing custom domain `sparkstudiox.com` and HTTPS enforcement. The workflow uses pinned official action commits and uploads only `dist/`. It preserves `CNAME`, `.nojekyll`, assets and the landing page, and generates a sitemap containing all 45 docs pages plus the homepage.
+The `Publish website and docs` GitHub Actions workflow builds and validates on pull requests and pushes. Only `main` deploys through GitHub Pages. Configure Pages to use **GitHub Actions**, with the existing custom domain `sparkstudiox.com` and HTTPS enforcement. The workflow uses pinned official action commits and uploads only `dist/`. It preserves `CNAME`, `.nojekyll`, assets and the landing page, and generates a sitemap containing every docs page plus the homepage.
 
 The site uses local sample-application screenshots. Operator images 02–04 hide runtime controls. Screenshots may show newer development features than the installer. Publish only reviewed authored samples without credentials, customer data or third-party product artifacts.
