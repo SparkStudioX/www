@@ -4,7 +4,8 @@
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
-    "build": "node tools/build.mjs && node tools/check-output.mjs",
+    "build": "node tools/build.mjs",
+    "postbuild": "node tools/check-output.mjs",
     "test": "node --test tools/docs.test.mjs",
     "preview": "node tools/preview.mjs",
     "release:update": "node tools/release.mjs --update",
