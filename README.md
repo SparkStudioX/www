@@ -14,7 +14,7 @@ npm run build
 npm run preview
 ```
 
-Open `http://127.0.0.1:4174`. Preview serves `dist/`, not the repository root. To use another source checkout, run `npm run build -- --source /path/to/src`. That checkout must contain the commit recorded in `docs-source.json`; fetch it if necessary. The build reads Git blobs at that commit and ignores unstaged or newer worktree content. A fresh website checkout needs a source checkout too; CI obtains it automatically.
+Open `http://127.0.0.1:4174`. Preview serves `dist/`, not the repository root. To use another source checkout, run `npm run build -- /path/to/src`. That checkout must contain the commit recorded in `docs-source.json`; fetch it if necessary. The build reads Git blobs at that commit and ignores unstaged or newer worktree content. A fresh website checkout needs a source checkout too; CI obtains it automatically.
 
 ## Documentation
 
