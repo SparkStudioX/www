@@ -1,29 +1,47 @@
 # SparkStudio website
 
-Static landing page for [sparkstudiox.com](https://sparkstudiox.com). This repository contains the public website only. The industrial gateway and designer application are maintained separately.
+Static landing page and documentation for [sparkstudiox.com](https://sparkstudiox.com). Application source belongs in [SparkStudioX/src](https://github.com/SparkStudioX/src); installers and workshop bundles belong in [SparkStudioX/releases](https://github.com/SparkStudioX/releases/releases).
 
-## Preview
+## Build and preview
 
-Serve this directory with any static HTTP server, for example:
+Use Node.js 22 or newer. With the application repository in `../source`:
 
 ```sh
-python -m http.server 4173 --bind 127.0.0.1
+npm ci --ignore-scripts
+npm test
+npm run release:check
+npm run build
+npm run preview
 ```
 
-Open `http://127.0.0.1:4173`. No package installation or build step is required.
+Open `http://127.0.0.1:4174`. Preview serves `dist/`, not the repository root. To use another source checkout, run `npm run build -- --source /path/to/src`. That checkout must contain the commit recorded in `docs-source.json`; fetch it if necessary. The build reads Git blobs at that commit and ignores unstaged or newer worktree content. A fresh website checkout needs a source checkout too; CI obtains it automatically.
+
+## Documentation
+
+`docs-source.json` pins the reviewed source commit. Every Markdown file in that commit's `docs/architecture/` becomes a page under `/docs/`. `README.md` supplies the grouped navigation and overview. Other filenames become lowercase hyphenated URLs, such as `TEMPLATE_PARAMETER_BINDINGS.md` → `/docs/template-parameter-bindings/`.
+
+The build uses markdown-it with raw HTML disabled and local highlight.js. It rewrites documentation links, checks page and heading targets, validates complete navigation coverage, and points other source links to the same GitHub revision. No Markdown is fetched or interpreted at runtime. Generated output and npm dependencies are ignored by Git.
+
+The reader includes full-text search over all guides, active-page navigation, heading permalinks, highlighted/copyable code, scrolling tables, adjacent-page links, source provenance, light/dark/system appearance and a keyboard-accessible mobile drawer. Search runs in the visitor's browser. Desktop content is usable without JavaScript; mobile topic navigation requires JavaScript. There are no external fonts, analytics, tracking or gateway connections.
+
+The collection is **Development docs**, which can describe work newer than the installer and ongoing application changes. Three linked development workshop sources are not committed at the current pin. Their exact paths are listed in `unpublishedSources`; the renderer displays their labels as text with “source pending publication,” never broken GitHub links. Unexpected missing sources fail the build. When those sources are published, update the pin and remove the obsolete exceptions; the build enforces this cleanup.
+
+To publish a documentation update:
+
+1. Review and commit authored docs in the application repository under its source-boundary policy. Include new guides in the architecture README navigation.
+2. Push the source commit and confirm its checks pass.
+3. Change `docs-source.json` to that full 40-character commit. Review any unpublished-source exceptions.
+4. Run the commands above and review the generated pages, search, links and mobile navigation.
+5. Commit and push this website change. Documentation revisions are deliberate and reproducible; an arbitrary source push cannot silently change public docs.
+
+## Downloads
+
+The homepage links **v0.2.0-preview.8**, including its installer, installation guide, workshop ZIP and installer checksum. Docker is coming soon. GitHub's `/releases/latest` excludes prereleases, so downloads use verified explicit tags.
+
+After publishing the next complete preview, run `npm run release:update`, review `release.json` and `index.html`, then commit. `npm run release:check` queries GitHub, excludes drafts, selects the most recently published preview, verifies all four uploaded assets, and rejects stale or mismatched homepage links. Set `GITHUB_TOKEN` if needed for API limits; never write it to the repository. CI checks releases before deployment but does not rewrite or commit files automatically.
 
 ## Publish
 
-GitHub Pages publishes the root of `main`. `CNAME` declares `sparkstudiox.com`; the same custom domain must be configured in the repository's Pages settings. `.nojekyll` keeps the source files as plain static assets.
+The `Publish website and docs` GitHub Actions workflow builds and validates on pull requests and pushes. Only `main` deploys through GitHub Pages. Configure Pages to use **GitHub Actions**, with the existing custom domain `sparkstudiox.com` and HTTPS enforcement. The workflow uses pinned official action commits and uploads only `dist/`. It preserves `CNAME`, `.nojekyll`, assets and the landing page, and generates a sitemap containing all 45 docs pages plus the homepage.
 
-The page uses local assets and system fonts. The product gallery contains static screenshots of SparkStudio sample applications, stored in `assets/screenshots/`. Images are non-clickable, with descriptive captions; there is no interactive product demo or gateway connection. The site's appearance preference is stored in the visitor's browser. There are no analytics, tracking scripts, or collection forms.
-
-Screenshots show the current development build and may include features newer than the linked installer. Only publish reviewed screenshots of authored sample projects, with no credentials, customer data or third-party product artifacts.
-
-Keep capability and release claims aligned with the application. The current product is an early preview for trusted local development. Installer binaries, checksums and installation guides are distributed through [SparkStudioX/releases](https://github.com/SparkStudioX/releases/releases), separately from this website repository.
-
-The header and hero Download buttons jump to the bottom download section. **Download for Windows** points directly to the unsigned x64 installer for `v0.2.0-preview.1`. The card also links to that same release's notes, installation guide, workshop ZIP and installer SHA-256 checksum. Links are pinned to an explicit prerelease because GitHub’s `/releases/latest` excludes prereleases. Docker remains marked coming soon. The gallery covers the Designer, reusable operator forms, process graphics, work orders and scripting.
-
-When updating the download card, publish and verify every linked asset in `SparkStudioX/releases` before deploying this website. Keep the visible version, release tag, installer filename and workshop filename synchronized; do not point visitors to draft or missing assets. The release repository carries assets and documentation, not application source.
-
-Operator gallery images (02–04) are captured in Application only presentation, with the runtime header, navigation and footer hidden. The bottom download section is the single place describing Windows and Docker availability.
+The site uses local sample-application screenshots. Operator images 02–04 hide runtime controls. Screenshots may show newer development features than the installer. Publish only reviewed authored samples without credentials, customer data or third-party product artifacts.
