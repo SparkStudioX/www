@@ -38,6 +38,7 @@ jobs:
       - run: npm run release:check
         env:
           GITHUB_TOKEN: ${{ github.token }}
+      - run: npm run docker:check
       - run: npm run build -- .docs-source
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:

@@ -1,0 +1,22 @@
+{
+  "repository": "ladder99/sparkstudio",
+  "tag": "0.2.0-preview.11-docker.1",
+  "digest": "sha256:054b36a79bbe70e1617996926b8768b750d650f1b10d8ad22d83911b4dea47a1",
+  "platforms": [
+    "linux/amd64",
+    "linux/arm64"
+  ],
+  "sourceRepository": "SparkStudioX/src",
+  "sourceCommit": "2dd4173c12a91b908d83ce8a74755c129e48fc5a",
+  "composePath": "compose.yaml",
+  "guide": "/docs/docker-release/",
+  "sourceManifest": {
+    "url": "https://github.com/SparkStudioX/releases/releases/download/v0.2.0-preview.11-docker.1/SparkStudio-Source-Manifest-0.2.0-preview.11-docker.1.json",
+    "sha256": "31aa2144b1a0a77cd39779acf343f2eabc11b24e86b87391321fdda16486fb45"
+  },
+  "sourceArchive": {
+    "url": "https://github.com/SparkStudioX/releases/releases/download/v0.2.0-preview.11-docker.1/SparkStudio-Corresponding-Sources-0.2.0-preview.11-docker.1.tar.gz",
+    "sha256": "c013b0cbca5235f846de9c7a7ab772b3c94cc030cee928defc4504ac8efaf3cc",
+    "size": 381453238
+  }
+}

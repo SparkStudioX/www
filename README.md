@@ -10,6 +10,7 @@ Use Node.js 22 or newer. With the application repository in `../source`:
 npm ci --ignore-scripts
 npm test
 npm run release:check
+npm run docker:check
 npm run build
 npm run preview
 ```
@@ -38,9 +39,11 @@ To publish a documentation update:
 
 The [standard preview release cycle](https://sparkstudiox.com/docs/release-process/) joins installer building and verification, GitHub prerelease publication, download updates and hosted docs into one release checklist. Its source is maintained in `SparkStudioX/src` at `docs/architecture/RELEASE_PROCESS.md`. A release is not complete until its installer/assets and the live website/docs are verified.
 
-The homepage links **v0.2.0-preview.11**, including its installer, installation guide, workshop ZIP and installer checksum. Docker is coming soon. GitHub's `/releases/latest` excludes prereleases, so downloads use verified explicit tags.
+The homepage links **v0.2.0-preview.11**, including its installer, installation guide, workshop ZIP and installer checksum. The separate Docker edition is **ladder99/sparkstudio:0.2.0-preview.11-docker.1**, with Linux AMD64 and ARM64 images, an example Compose file in the application repository and a [deployment guide](https://sparkstudiox.com/docs/docker-release/). GitHub's `/releases/latest` excludes prereleases, so Windows downloads use verified explicit tags.
 
-After publishing the next complete preview, run `npm run release:update`, review `release.json` and `index.html`, then commit. `npm run release:check` queries GitHub, excludes drafts, selects the most recently published preview, verifies all four uploaded assets, and rejects stale or mismatched homepage links. Set `GITHUB_TOKEN` if needed for API limits; never write it to the repository. CI checks releases before deployment but does not rewrite or commit files automatically.
+After publishing the next complete Windows preview, run `npm run release:update`, review `release.json` and the Windows card in `index.html`, then commit. `npm run release:check` queries GitHub, excludes drafts and releases without their matching Windows installer, selects the most recently published Windows preview, verifies all four uploaded assets, and rejects stale or mismatched Windows links. The updater preserves the separate Docker card and ignores newer Docker-only prereleases. Set `GITHUB_TOKEN` if needed for API limits; never write it to the repository. CI checks releases before deployment but does not rewrite or commit files automatically.
+
+After publishing and verifying a Docker edition, record its public multi-platform index digest, full application source commit and corresponding-source asset checksums/size in `docker-release.json`, then update the Docker card's explicit tag and Compose link in `index.html`. Run `npm run docker:check` before building or publishing. It verifies anonymous public pulls, the index digest, one image for each supported architecture, each image's edition/source labels, the committed example Compose, the small corresponding-source manifest checksum/completeness and the source archive's public availability/size. The release cycle verifies the full archive checksum separately; Pages CI does not download that large asset. Docker and Windows previews have independent publication records; a container release does not rewrite installer download links.
 
 ## Publish
 

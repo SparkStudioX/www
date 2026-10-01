@@ -119,7 +119,7 @@
 .download-card p { margin-top: 14px; max-width: 390px; color: var(--secondary); font-size: 14px; }
 .download-card .button { margin-top: 25px; }
 .download-detail { display: block; margin-top: 12px; color: var(--muted); font-size: 11px; }
-.coming-soon { display: inline-flex; align-items: center; margin-top: 25px; min-height: 46px; padding: 10px 17px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface-alt); color: var(--secondary); font-size: 12px; font-weight: 550; }
+.download-detail strong { overflow-wrap: anywhere; }
 @media (max-width: 900px) {
   .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

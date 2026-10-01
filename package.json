@@ -6,10 +6,11 @@
   "scripts": {
     "build": "node tools/build.mjs",
     "postbuild": "node tools/check-output.mjs",
-    "test": "node --test tools/docs.test.mjs",
+    "test": "node --test tools/*.test.mjs",
     "preview": "node tools/preview.mjs",
     "release:update": "node tools/release.mjs --update",
-    "release:check": "node tools/release.mjs"
+    "release:check": "node tools/release.mjs",
+    "docker:check": "node tools/docker-release.mjs"
   },
   "devDependencies": {
     "highlight.js": "11.12.0",
