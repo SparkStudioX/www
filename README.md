@@ -31,6 +31,8 @@ The **Data source setup** navigation group contains [MQTT](https://sparkstudiox.
 
 The MQTT guide includes a [topic mapping field reference](https://sparkstudiox.com/docs/mqtt-setup/#topic-mapping-field-reference) explaining every setting, the three tag creation modes, topic-to-tag path examples, structured messages, freshness/retained behavior and publisher ordering expressions.
 
+The [MTConnect](https://sparkstudiox.com/docs/mtconnect-setup/#connection-field-reference) and [i3X](https://sparkstudiox.com/docs/i3x-setup/#connection-field-reference) guides include complete connection-field references, point/tag import fields, and advanced limits. They explain polling versus streaming, MTConnect filters/sample controls, i3X event delivery/reconciliation, authentication, certificates, and the difference between source addresses, selectors and gateway tag paths.
+
 To publish a documentation update:
 
 1. Review and commit authored docs in the application repository under its source-boundary policy. Include new guides in the architecture README navigation.
