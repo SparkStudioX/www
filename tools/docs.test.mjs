@@ -21,6 +21,15 @@ test('unpublished development examples are explicit text rather than broken link
 test('navigation must cover all pages exactly once', () => {
   assert.throws(() => parseDocs(new Map([['README.md', '# Docs'], ['GUIDE.md', '# Guide']]), () => null, config), /exactly once/);
 });
+test('protocol names containing digits participate in navigation and local links', () => {
+  const { docs, groups, ordered } = parseDocs(new Map([
+    ['README.md', '# Docs\n\n## Data source setup\n\n- [i3X setup walkthrough](I3X_SETUP.md)'],
+    ['I3X_SETUP.md', '# i3X setup walkthrough\n\n[Overview](README.md)'],
+  ]), () => null, config);
+  assert.equal(groups[0].items[0].url, '/docs/i3x-setup/');
+  assert.equal(ordered.length, 2);
+  assert.match(docs.get('README.md').html, /href="\/docs\/i3x-setup\/"/);
+});
 test('unsafe Markdown links never become executable URLs', () => {
   const { docs } = build('# Guide\n\n[Click](javascript:alert%281%29)\n\n<img src=x onerror=alert(1)>');
   assert.doesNotMatch(docs.get('GUIDE.md').html, /href="javascript:|<img/);

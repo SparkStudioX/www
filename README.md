@@ -27,6 +27,8 @@ The reader includes full-text search over all guides, active-page navigation, he
 
 The collection is **Development docs**, pinned to the reviewed source and documentation commit recorded in `docs-source.json`. All linked workshop sources are published at this pin; no unpublished-source exceptions are needed. Unexpected missing sources fail the build. Keep the pin and compatibility guidance deliberate when newer development work is published.
 
+The **Data source setup** navigation group contains [MQTT](https://sparkstudiox.com/docs/mqtt-setup/), [MTConnect](https://sparkstudiox.com/docs/mtconnect-setup/) and [i3X](https://sparkstudiox.com/docs/i3x-setup/) user walkthroughs. They cover endpoint/authentication setup, connection tests, browsing, both tag creation routes, live-value checks, optional acquisition settings and troubleshooting. Each guide identifies the development feature it requires; the currently published Windows and Docker binaries do not include these three source clients.
+
 To publish a documentation update:
 
 1. Review and commit authored docs in the application repository under its source-boundary policy. Include new guides in the architecture README navigation.

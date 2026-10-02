@@ -29,7 +29,7 @@ export function parseDocs(files, readSource, config) {
   for (const line of index.source.split(/\r?\n/)) {
     const heading = /^## (.+)/.exec(line);
     if (heading) { group = { title: heading[1], items: [] }; groups.push(group); }
-    const item = /^- \[([^\]]+)\]\(([A-Z_]+\.md)\)/.exec(line);
+    const item = /^- \[([^\]]+)\]\(([A-Z0-9_]+\.md)\)/.exec(line);
     if (!item) continue;
     if (!group || !docs.has(item[2])) throw new Error(`Invalid navigation entry: ${line}`);
     group.items.push({ title: item[1], file: item[2], url: route(item[2]) });
