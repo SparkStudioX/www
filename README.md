@@ -29,6 +29,8 @@ The collection is **Development docs**, pinned to the reviewed source and docume
 
 The **Data source setup** navigation group contains [MQTT](https://sparkstudiox.com/docs/mqtt-setup/), [MTConnect](https://sparkstudiox.com/docs/mtconnect-setup/) and [i3X](https://sparkstudiox.com/docs/i3x-setup/) user walkthroughs. They cover endpoint/authentication setup, connection tests, browsing, both tag creation routes, live-value checks, optional acquisition settings and troubleshooting. Each guide identifies the development feature it requires; the currently published Windows and Docker binaries do not include these three source clients.
 
+The MQTT guide includes a [topic mapping field reference](https://sparkstudiox.com/docs/mqtt-setup/#topic-mapping-field-reference) explaining every setting, the three tag creation modes, topic-to-tag path examples, structured messages, freshness/retained behavior and publisher ordering expressions.
+
 To publish a documentation update:
 
 1. Review and commit authored docs in the application repository under its source-boundary policy. Include new guides in the architecture README navigation.
